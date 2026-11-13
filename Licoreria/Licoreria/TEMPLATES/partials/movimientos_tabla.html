@@ -1,0 +1,59 @@
+
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Producto</th>
+                <th>Movimiento</th>
+                <th>Cantidad</th>
+                <th>Stock anterior</th>
+                <th>Stock nuevo</th>
+                <th>Usuario</th>
+                <th>Pedido</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movimiento in movements %}
+            <tr>
+                <td>{{ movimiento.creado|date:"d/m/Y H:i" }}</td>
+                <td>{{ movimiento.producto.nombre }}</td>
+                <td>
+                    {% if movimiento.tipo == "VENTA" %}
+                        <span class="badge text-bg-danger">Venta</span>
+                    {% elif movimiento.tipo == "INGRESO" %}
+                        <span class="badge text-bg-success">Ingreso</span>
+                    {% elif movimiento.tipo == "DEVOLUCION" %}
+                        <span class="badge text-bg-info">Devolución</span>
+                    {% else %}
+                        <span class="badge badge-status">Ajuste</span>
+                    {% endif %}
+                </td>
+                <td>{{ movimiento.cantidad }}</td>
+                <td>{{ movimiento.stock_anterior }}</td>
+                <td>{{ movimiento.stock_nuevo }}</td>
+                <td>
+                    {% if movimiento.usuario %}
+                        {{ movimiento.usuario.username }}
+                    {% else %}
+                        Sistema
+                    {% endif %}
+                </td>
+                <td>
+                    {% if movimiento.pedido %}
+                        #{{ movimiento.pedido.id }}
+                    {% else %}
+                        —
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8" class="empty">
+                    Todavía no hay movimientos de inventario.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

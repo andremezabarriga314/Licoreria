@@ -1,0 +1,89 @@
+
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Compra</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Detalle</th>
+                <th>Total</th>
+                <th>Pago</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pedido in orders_display %}
+            <tr>
+                <td>#{{ pedido.id }}</td>
+                <td>{{ pedido.creado|date:"d/m/Y H:i" }}</td>
+                <td>
+                    {{ pedido.nombre_cliente }}
+                    <small class="d-block muted">{{ pedido.celular }}</small>
+                </td>
+                <td>
+                    {% for item in pedido.items.all %}
+                        <div>{{ item.cantidad }} × {{ item.producto.nombre }}</div>
+                    {% empty %}
+                        <span class="muted">Sin productos</span>
+                    {% endfor %}
+                </td>
+                <td><strong>S/ {{ pedido.total|floatformat:2 }}</strong></td>
+                <td>
+                    {% if pedido.pagado %}
+                        <span class="badge text-bg-success">Pagado</span>
+                    {% else %}
+                        <span class="badge text-bg-warning">Pendiente</span>
+
+                        {% if role == "admin" or role == "tienda" %}
+                            {% if pedido.estado != "CANCELADO" %}
+                            <form method="post" action="{% url 'system_action' %}" class="mt-2">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="marcar_pagado">
+                                <input type="hidden" name="pedido_id" value="{{ pedido.id }}">
+                                <input type="hidden" name="seccion" value="Pedidos">
+                                <button type="submit" class="btn btn-sm btn-outline-light">
+                                    Marcar pagado
+                                </button>
+                            </form>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                </td>
+                <td>
+                    <span class="badge badge-status">{{ pedido.get_estado_display }}</span>
+
+                    {% if role == "admin" or role == "tienda" %}
+                        {% if pedido.estado != "CANCELADO" and pedido.estado != "ENTREGADO" %}
+                        <form method="post" action="{% url 'system_action' %}" class="mt-2">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="estado_pedido">
+                            <input type="hidden" name="pedido_id" value="{{ pedido.id }}">
+                            <input type="hidden" name="seccion" value="Pedidos">
+
+                            <select name="estado" class="form-select form-select-sm mb-2">
+                                {% for valor, etiqueta in estados_pedido %}
+                                <option value="{{ valor }}" {% if pedido.estado == valor %}selected{% endif %}>
+                                    {{ etiqueta }}
+                                </option>
+                                {% endfor %}
+                            </select>
+
+                            <button type="submit" class="btn btn-sm btn-outline-light">
+                                Actualizar
+                            </button>
+                        </form>
+                        {% endif %}
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7" class="empty">
+                    Todavía no hay pedidos registrados.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

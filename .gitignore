@@ -1,0 +1,20 @@
+# Entorno virtual y cache de Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Datos y secretos (NO subir)
+db.sqlite3
+*.sqlite3
+.env
+media/
+respaldo*.json
+mi_proyecto_respaldo/
+
+# Copias de seguridad y editores
+*.bak
+*.bak2
+.vscode/
+.idea/
+staticfiles/
