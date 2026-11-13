@@ -1,4 +1,4 @@
-{% load static %}
+﻿{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -3008,14 +3008,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // DESTILADOS Y AGUARDIENTES: cambia el nombre (n) y el precio en soles (p) de cada bebida. p: null = "Consultar"
     const DESTILADOS = [
-        {n: "Destilado 1", g: "destilado", t: "Destilado", p: 49.90, pais: "", img: "https://i.pinimg.com/1200x/13/13/9d/13139d1faa28b4799e2433f7942235d4.jpg", d: ASK},
-        {n: "Destilado 2", g: "destilado", t: "Destilado", p: 59.90, pais: "", img: "https://i.pinimg.com/736x/68/66/f5/6866f57d7a656ac200e3fe7815409bdd.jpg", d: ASK},
-        {n: "Destilado 3", g: "destilado", t: "Destilado", p: 69.90, pais: "", img: "https://i.pinimg.com/736x/96/0e/47/960e47d53c8c27afc2d7a44061550183.jpg", d: ASK},
-        {n: "Destilado 4", g: "destilado", t: "Destilado", p: 79.90, pais: "", img: "https://i.pinimg.com/736x/15/08/60/150860c309835814dcb1cf1ec2e02deb.jpg", d: ASK},
-        {n: "Destilado 5", g: "destilado", t: "Destilado", p: 89.90, pais: "", img: "https://i.pinimg.com/736x/17/73/2c/17732c9e5887952e606a2a9862cc1c85.jpg", d: ASK},
-        {n: "Destilado 6", g: "destilado", t: "Destilado", p: 99.90, pais: "", img: "https://i.pinimg.com/736x/14/79/64/1479643f8c628d791c9507e73b15ba45.jpg", d: ASK},
-        {n: "Destilado 7", g: "destilado", t: "Destilado", p: 119.90, pais: "", img: "https://i.pinimg.com/1200x/9d/6f/5f/9d6f5f8346a44d06cf4a0d6f8f0ec39d.jpg", d: ASK},
-        {n: "Destilado 8", g: "destilado", t: "Destilado", p: 139.90, pais: "", img: "https://i.pinimg.com/736x/0c/63/a3/0c63a3b4efd4dd33102a525051d3d7fd.jpg", d: ASK}
+       {n: "Beefeater London Dry Gin", g: "destilado", t: "Gin", p: 49.90, pais: "Reino Unido", img: "https://i.pinimg.com/1200x/13/13/9d/13139d1faa28b4799e2433f7942235d4.jpg", d: ASK},
+{n: "Jack Daniel's Old No. 7", g: "destilado", t: "Whiskey", p: 59.90, pais: "Estados Unidos", img: "https://i.pinimg.com/736x/68/66/f5/6866f57d7a656ac200e3fe7815409bdd.jpg", d: ASK},
+{n: "Cognac Leyrat X.O. Vieille Reserve", g: "destilado", t: "Cognac", p: 69.90, pais: "Francia", img: "https://i.pinimg.com/736x/96/0e/47/960e47d53c8c27afc2d7a44061550183.jpg", d: ASK},
+{n: "Belvedere Vodka", g: "destilado", t: "Vodka", p: 79.90, pais: "Polonia", img: "https://i.pinimg.com/736x/15/08/60/150860c309835814dcb1cf1ec2e02deb.jpg", d: ASK},
+{n: "Jack Daniel's Tennessee Whiskey", g: "destilado", t: "Whiskey", p: 89.90, pais: "Estados Unidos", img: "https://i.pinimg.com/736x/17/73/2c/17732c9e5887952e606a2a9862cc1c85.jpg", d: ASK},
+{n: "Vodka VIP 70%", g: "destilado", t: "Vodka", p: 99.90, pais: "Rusia", img: "https://i.pinimg.com/736x/14/79/64/1479643f8c628d791c9507e73b15ba45.jpg", d: ASK},
+{n: "Belvedere Vodka Polska", g: "destilado", t: "Vodka", p: 119.90, pais: "Polonia", img: "https://i.pinimg.com/1200x/9d/6f/5f/9d6f5f8346a44d06cf4a0d6f8f0ec39d.jpg", d: ASK},
+{n: "Three Olives Citrus Vodka", g: "destilado", t: "Vodka", p: 139.90, pais: "Reino Unido", img: "https://i.pinimg.com/736x/0c/63/a3/0c63a3b4efd4dd33102a525051d3d7fd.jpg", d: ASK}
+
     ];
 
     // LICORES REGIONALES: bebidas, no fotos de bares.
@@ -3043,29 +3044,27 @@ document.addEventListener("DOMContentLoaded", function () {
         LQ("1748290310315-b1fa3564cd90"), LQ("1683371268578-61f9f036e5bc"), LQ("1514362545857-3bc16c4c7d1b"),
         LQ("1532517287333-fbb66d7e6006"), LQ("1740247374238-af6f14719373"), LQ("1760982192590-de2b005bb4d5")
     ];
+    
+    
     const LICORERIA_POOL = [
-        "https://i.pinimg.com/1200x/13/13/9d/13139d1faa28b4799e2433f7942235d4.jpg",
-        "https://i.pinimg.com/736x/68/66/f5/6866f57d7a656ac200e3fe7815409bdd.jpg",
-        "https://i.pinimg.com/736x/96/0e/47/960e47d53c8c27afc2d7a44061550183.jpg",
-        "https://i.pinimg.com/736x/15/08/60/150860c309835814dcb1cf1ec2e02deb.jpg",
-        "https://i.pinimg.com/736x/17/73/2c/17732c9e5887952e606a2a9862cc1c85.jpg",
-        "https://i.pinimg.com/736x/14/79/64/1479643f8c628d791c9507e73b15ba45.jpg"
-    ];
+    "https://i.pinimg.com/1200x/13/13/9d/13139d1faa28b4799e2433f7942235d4.jpg", // [0] Beefeater Gin
+    "https://i.pinimg.com/736x/68/66/f5/6866f57d7a656ac200e3fe7815409bdd.jpg",  // [1] Jack Daniel's Old No. 7
+    "https://i.pinimg.com/736x/96/0e/47/960e47d53c8c27afc2d7a44061550183.jpg",  // [2] Cognac Leyrat X.O.
+    "https://i.pinimg.com/736x/15/08/60/150860c309835814dcb1cf1ec2e02deb.jpg",  // [3] Belvedere Vodka
+    "https://i.pinimg.com/736x/17/73/2c/17732c9e5887952e606a2a9862cc1c85.jpg",  // [4] Jack Daniel's Whiskey
+    "https://i.pinimg.com/736x/14/79/64/1479643f8c628d791c9507e73b15ba45.jpg"   // [5] Vodka VIP 70%
+];
 
-    const LICORERIA = [
-        item("Johnnie Walker Red Label", "whisky", "Whisky", "Escocia", "Carácter vivo para encender la primera copa de la noche.", LICORERIA_POOL[0], 99.00),
-        item("Johnnie Walker Black Label", "whisky", "Whisky", "Escocia", "Profundo, ahumado y elegante. Se bebe despacio.", LICORERIA_POOL[1], 169.00),
-        item("Chivas Regal 12 años", "whisky", "Whisky", "Escocia", "Suave y redondo, hecho para brindar en buena compañía.", LICORERIA_POOL[2], 149.00),
-        item("Ron Cartavio Black", "ron", "Ron", "Perú", "Oscuro, intenso y con sabor a noche larga.", LICORERIA_POOL[3], 39.00),
-        item("Ron Flor de Caña 12 años", "ron", "Ron", "Nicaragua", "Doce años de paciencia en cada trago.", LICORERIA_POOL[4], 129.00),
-        item("Havana Club 7 años", "ron", "Ron", "Cuba", "Dulce y ámbar, ideal solo o con hielo.", LICORERIA_POOL[5], 79.00),
-        item("Absolut Vodka", "vodka", "Vodka", "Suecia", "Limpio, frío y sin rodeos. La base de todas las tentaciones.", LICORERIA_POOL[0], 69.00),
-        item("Beefeater London Dry Gin", "gin", "Gin", "Inglaterra", "Seco, cítrico y sofisticado. Tu gin tonic empieza aquí.", LICORERIA_POOL[1], 85.00),
-        item("Tequila Jose Cuervo Especial", "tequila", "Tequila", "México", "Sal, limón y ganas de más.", LICORERIA_POOL[2], 79.00),
-        item("Pisco Barsol Quebranta", "pisco", "Pisco", "Perú", "Uva peruana en su forma más pura. Un brindis con sabor a casa.", LICORERIA_POOL[3], 49.00),
-        item("Pisco Portón Mosto Verde", "pisco", "Pisco", "Perú", "Suave, aromático y peligrosamente fácil de beber.", LICORERIA_POOL[4], 119.00),
-        item("Baileys Original", "otros", "Crema", "Irlanda", "Cremoso, dulce y tentador. El postre que se bebe.", LICORERIA_POOL[5], 89.00)
-    ];
+const LICORERIA = [
+    item("Beefeater London Dry Gin", "gin", "Gin", "Inglaterra", "Seco, cítrico y sofisticado. Tu gin tonic empieza aquí.", LICORERIA_POOL[0], 99.00),
+    item("Jack Daniel's Old No. 7", "whisky", "Whisky", "Estados Unidos", "Profundo, ahumado y elegante. Se bebe despacio.", LICORERIA_POOL[1], 169.00),
+    item("Cognac Leyrat X.O. Vieille Reserve", "otros", "Cognac", "Francia", "Suave, cálido y redondo, hecho para brindar en buena compañía.", LICORERIA_POOL[2], 149.00),
+    item("Belvedere Vodka", "vodka", "Vodka", "Polonia", "Limpio, frío y sin rodeos. La base de todas las tentaciones.", LICORERIA_POOL[3], 139.00),
+    item("Jack Daniel's Tennessee Whiskey", "whisky", "Whisky", "Estados Unidos", "Carácter vivo y notas de roble para encender la noche.", LICORERIA_POOL[4], 129.00),
+    item("Vodka VIP 70%", "vodka", "Vodka", "Rusia", "Intenso, nocturno y magnético. Solo para los que se atreven.", LICORERIA_POOL[5], 119.00)
+];
+
+
 
     // PUBLICIDAD: cambia la frase (t), la descripción (d) y la sección a la que lleva (go)
     const P = function (u) { return "https://i.pinimg.com/" + u; };
